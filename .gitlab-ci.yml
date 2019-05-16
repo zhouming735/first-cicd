@@ -1,14 +1,24 @@
 stages:
-  - build
+  - clean
+  - compile
   - test
+  - install
 
 before_script:
   - echo "Restoring Packages..."
-
-build_job:
-  stage: build
+clean_job:
+  stage: clean
   script:
-  - echo "Release build..."
+  - echo "Clean run..."
+  - mvn clean
+  except:
+  - tags
+
+compile_job:
+  stage: compile
+  script:
+  - echo "Compile run..."
+  - mvn compile
   except:
   - tags
 
@@ -16,6 +26,10 @@ test_job:
   stage: test
   script:
   - echo "Tests run..."
-  - cd cds.ci.test
-  - gradle test
+  - mvn test
 
+install_job:
+  stage: install
+  script:
+  - echo "Install run..."
+  - mvn install
