@@ -39,7 +39,14 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
     </dependencies>
-
+    <!--maven artifactory仓库-->
+    <distributionManagement>
+        <repository>
+            <id>central</id>
+            <name>fdde70249be8-releases</name>
+            <url>${env.MAVEN_REPO_URL}/libs-release-local</url>
+        </repository>
+    </distributionManagement>
     <!--maven的插件-->
     <build>
         <plugins>
